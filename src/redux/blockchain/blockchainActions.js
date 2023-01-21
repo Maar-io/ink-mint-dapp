@@ -1,9 +1,3 @@
-// constants
-import Web3EthContract from "web3-eth-contract";
-import Web3 from "web3";
-
-// import { web3Accounts, web3Enable, web3FromSource } from '@polkadot/extension-dapp';
-
 import { ApiPromise, Keyring, WsProvider } from '@polkadot/api'
 import { Abi, ContractPromise } from '@polkadot/api-contract'
 // import type { WeightV2 } from '@polkadot/types/interfaces'
@@ -62,8 +56,6 @@ export const connect = () => {
       },
     });
     const CONFIG = await configResponse.json();
-    // const { ethereum } = window;
-    // const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
 
     const { injectedWeb3 } = window;
     const subWalletInstalled = injectedWeb3 && injectedWeb3['subwallet-js']
@@ -72,7 +64,6 @@ export const connect = () => {
       console.log("subWalletInstalled OK")
       
       try {
-
         const SubWalletExtension = window.injectedWeb3['subwallet-js']
         const extension = await SubWalletExtension.enable()
         const accounts = await extension.accounts.get()
