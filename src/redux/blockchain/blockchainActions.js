@@ -73,22 +73,12 @@ export const connect = () => {
         const wallet = await SubWalletExtension.enable()
         const accounts = await wallet.accounts.get()
         if (accounts) {
-          accounts.forEach(element => {
-            console.log("account address:", element.address,)
-            console.log("account name:", element.name,)
-            
-          });
-          console.log("account = ", accounts[0])
+          console.log("connected account[0]:", accounts[0],)
         }
-        else{
-          dispatch(connectInfo(accounts[0] + " No connected address found"));
+        else {
+          dispatch(connectInfo("No connected account found"));
           return null
         }
-        const meta = await wallet.metadata.get()
-        console.log("meta:", meta)
-        console.log("all acc", accounts);
-        console.log("account signer:", wallet.signer,)
-        const signer = wallet.signer;
 
         // set new provider
         const provider = new WsProvider(CONFIG.WS_PROVIDER)
@@ -104,17 +94,15 @@ export const connect = () => {
 
         // Get contract
         const contract = new ContractPromise(api, abi, CONFIG.CONTRACT_ADDRESS)
-        console.log("contract", contract);
 
         // Update state
         if (contract) {
-          console.log("contract OK", contract.api._events)
           dispatch(
             connectSuccess({
               account: accounts[0],
               smartContract: contract,
               api: api,
-              signer: signer,
+              signer: wallet.signer,
             })
           )
         } else {

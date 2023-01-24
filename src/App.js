@@ -6,9 +6,9 @@ import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 import BN from "bn.js";
 
-const proofSize = 131072
-const refTime = 6219235328
-const storageDepositLimit = 1000000
+const proofSize = 3407872
+const refTime = 32490000000
+const storageDepositLimit = null
 
 const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
@@ -130,54 +130,25 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
-    console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
-    //   blockchain.smartContract.
-    //     .mint(mintAmount)
-    //     .send({
-    //       gasLimit: String(totalGasLimit),
-    //       to: CONFIG.CONTRACT_ADDRESS,
-    //       from: blockchain.account,
-    //       value: totalCostWei,
-    //     })
-    //     .once("error", (err) => {
-    //       console.log(err);
-    //       setFeedback("Sorry, something went wrong please try again later.");
-    //       setClaimingNft(false);
-    //     })
-    //     .then((receipt) => {
-    //       console.log(receipt);
-    //       setFeedback(
-    //         `WOW, the ${CONFIG.NFT_NAME} is yours! go open SubWallet to view it.`
-    //       );
-    //       setClaimingNft(false);
-    //       dispatch(fetchData(blockchain.account));
-    //     });
-    // };
-
 
     if (blockchain.smartContract !== undefined) {
-      const { gasRequired } = await blockchain.smartContract.query['payableMint::mintNext'](
-        blockchain.account.address,
-        // userAddress,
-        // 1,
-        {
-          gasLimit: blockchain.api.registry.createType('WeightV2', {
-            refTime,
-            proofSize,
-          }),
-          storageDepositLimit,
-        }
-      )
-      console.log("mint gasRequired", gasRequired.toString())
+      // const { gasRequired } = await blockchain.smartContract.query['payableMint::mintNext'](
+      //   blockchain.account.address,
+      //   {
+      //     gasLimit: blockchain.api.registry.createType('WeightV2', {
+      //       refTime,
+      //       proofSize,
+      //     }),
+      //     storageDepositLimit,
+      //   }
+      // )
+      // console.log("mint gasRequired", gasRequired.toString())
 
       // const { gasConsumed, result, output } = await blockchain.smartContract.tx['payableMint::mintNext'](
-      console.log("account use for signing", blockchain.account)
-      console.log("address use for signing", blockchain.account.address)
-      console.log("signer", blockchain.signer)
-      const mintValue = new BN('1000000000000000000')
+      console.log("account used", blockchain)
+      const mintValue = new BN(CONFIG.WEI_COST)
       const res = await blockchain.smartContract.tx['payableMint::mintNext'](
         // userAddress,
         // userAddress,
@@ -194,17 +165,21 @@ function App() {
         signAndSend(blockchain.account.address, { signer: blockchain.signer }, (result) => {
           if (result.status.isInBlock) {
             console.log('in a block');
+            setFeedback(
+              `Be patient, your ${CONFIG.NFT_NAME} is coming.`
+            );
           } else if (result.status.isFinalized) {
             console.log('finalized');
+            setFeedback(
+              `WOW, the ${CONFIG.NFT_NAME} is yours! Go open SubWallet to view it.`
+            );
+            setClaimingNft(false);
+            dispatch(fetchData(blockchain.account));
           }
           else {
             console.log('signAndSend else', result);
           }
         });
-
-      console.log("mint result", res)
-      // console.log("mint output", output.toString())
-      // console.log("mint gasConsumed", gasConsumed.toString())
     };
   }
 
@@ -443,7 +418,7 @@ function App() {
             }}
           >
             Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
+            {CONFIG.NETWORK.NAME} Mainnet) and the correct address in your wallet. Please note:
             Once you make the purchase, you cannot undo this action.
           </s.TextDescription>
           <s.SpacerSmall />
@@ -453,9 +428,6 @@ function App() {
               color: "var(--primary-text)",
             }}
           >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
           </s.TextDescription>
         </s.Container>
       </s.Container>
