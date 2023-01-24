@@ -3,7 +3,7 @@ const initialState = {
   totalSupply: 0,
   cost: 0,
   error: false,
-  errorMsg: "",
+  message: "",
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const dataReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: false,
-        errorMsg: "",
+        message: "",
       };
     case "CHECK_DATA_SUCCESS":
       return {
@@ -22,14 +22,14 @@ const dataReducer = (state = initialState, action) => {
         totalSupply: action.payload.totalSupply,
         // cost: action.payload.cost,
         error: false,
-        errorMsg: "",
+        message: "",
       };
     case "CHECK_DATA_FAILED":
       return {
         ...initialState,
         loading: false,
         error: true,
-        errorMsg: action.payload,
+        message: action.payload,
       };
     default:
       return state;

@@ -1,18 +1,19 @@
 {
-  "CONTRACT_ADDRESS": "0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
-  "SCAN_LINK": "https://polygonscan.com/token/0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
+  "CONTRACT_ADDRESS": "b8QeEr72aJQKfaXcEDGwB5iwqGuF1b9oysHtj3nwMsdmgHa",
+  "SCAN_LINK": "https://shiden.subscan.io/account/b8QeEr72aJQKfaXcEDGwB5iwqGuF1b9oysHtj3nwMsdmgHa",
   "NETWORK": {
-    "NAME": "Polygon",
-    "SYMBOL": "Matic",
+    "NAME": "Shiden",
+    "SYMBOL": "SH34",
     "ID": 137
   },
-  "NFT_NAME": "Nerdy Coder Clones",
-  "SYMBOL": "NCC",
-  "MAX_SUPPLY": 1000,
-  "WEI_COST": 75000000000000000,
-  "DISPLAY_COST": 0.075,
+  "NFT_NAME": "Shiden34 Test",
+  "SYMBOL": "Test34",
+  "MAX_SUPPLY": 100,
+  "WEI_COST": 1000000000000000000,
+  "DISPLAY_COST": 1,
   "GAS_LIMIT": 285000,
-  "MARKETPLACE": "Opeansea",
+  "MARKETPLACE": "SubWallet",
   "MARKETPLACE_LINK": "https://opensea.io/collection/nerdy-coder-clones",
-  "SHOW_BACKGROUND": true
+  "SHOW_BACKGROUND": true,
+  "WS_PROVIDER": "wss://rpc.shiden.astar.network"
 }
