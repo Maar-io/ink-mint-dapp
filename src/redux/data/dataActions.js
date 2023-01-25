@@ -1,9 +1,5 @@
 import store from "../store";
 
-const proofSize = 131072
-const refTime = 6219235328
-const storageDepositLimit = 1000000
-
 const fetchDataRequest = () => {
   return {
     type: "CHECK_DATA_REQUEST",
@@ -28,24 +24,24 @@ export const fetchData = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
-      let userAddress = store.getState().blockchain.account.address;
       let blockchain = store.getState().blockchain
+      let userAddress = blockchain?.account.address;
+      let gasRequired = await blockchain?.api.consts.system.blockWeights['maxBlock']
+      console.log("blockWeights['maxBlock']", gasRequired.toString())
       if (blockchain.smartContract !== undefined) {
+        // query total supply
         const { output } = await blockchain.smartContract.query['psp34::totalSupply'](userAddress,
           {
-            gasLimit: blockchain.api.registry.createType('WeightV2', {
-              refTime,
-              proofSize,
-            }),
-            storageDepositLimit,
+            gasLimit: blockchain.api.registry.createType('WeightV2', gasRequired),
           }
         )
-        console.log("fetchData, totalSupply=", output.toString())
-        const totalSupply = output.toString()
+        console.log("fetchData, totalSupply=", output?.toString())
+        const totalSupply = output?.toString()
+
+        // Update state
         dispatch(
           fetchDataSuccess({
             totalSupply,
-            // cost,
           })
         );
       }
@@ -58,3 +54,4 @@ export const fetchData = () => {
     }
   };
 };
+

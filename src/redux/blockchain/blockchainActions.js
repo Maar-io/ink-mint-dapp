@@ -107,38 +107,8 @@ export const connect = () => {
           )
         } else {
           console.log("contract NOK", contract.api._events)
-
           dispatch(connectInfo(accounts[0] + "Contract is empty"));
         }
-
-
-        // const networkId = await ethereum.request({
-        //   method: "net_version",
-        // });
-        // console.log("ethereum networkId:", networkId)
-        // if (networkId == CONFIG.NETWORK.ID) {
-        // const SmartContractObj = new Web3EthContract(
-        //   abi,
-        //   CONFIG.CONTRACT_ADDRESS
-        // );
-        // dispatch(
-        //   connectSuccess({
-        //     account: accounts[0],
-        //     smartContract: SmartContractObj,
-        //     web3: web3,
-        //   })
-        // );
-        //   // Add listeners start
-        //   ethereum.on("accountsChanged", (accounts) => {
-        //     dispatch(updateAccount(accounts[0]));
-        //   });
-        //   ethereum.on("chainChanged", () => {
-        //     window.location.reload();
-        //   });
-        //   // Add listeners end
-        // } else {
-        //   dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
-        // }
       } catch (err) {
         console.log(err)
         dispatch(connectFailed("Something went wrong."));
@@ -155,33 +125,3 @@ export const updateAccount = (account) => {
     dispatch(fetchData(account));
   };
 };
-
-// const getContract = async (address, ws_provider) => {
-//   const provider = new WsProvider(ws_provider)
-//   const api = new ApiPromise({ provider })
-
-//   await api.isReady
-//   console.log("Api", api)
-
-//   const abi = new Abi(abiData, api.registry.getChainProperties())
-//   console.log("abi", abi)
-
-//   const contract = new ContractPromise(api, abi, address.value)
-
-//   return contract
-// }
-
-// const queryTotalSupply = async (api, contract) => {
-//   // (We perform the send from an account, here using Alice's address)
-//   const { gasRequired, result, output } = await contract.query['psp34::totalSupply'](
-//     {
-//       gasLimit: api.registry.createType('WeightV2', {
-//         refTime,
-//         proofSize,
-//       }),
-//       storageDepositLimit,
-//     }
-//   )
-//   console.log("result", result)
-//   return result
-// }
