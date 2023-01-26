@@ -6,14 +6,14 @@
     "SYMBOL": "SDN",
     "ID": 137
   },
-  "NFT_NAME": "Shiden34",
-  "SYMBOL": "Test34",
-  "MAX_SUPPLY": 100,
+  "NFT_NAME": "ShidenGraffiti",
+  "SYMBOL": "SHG",
+  "MAX_SUPPLY": 1000,
   "WEI_COST": "10000000000000000",
   "DISPLAY_COST": 1,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "SubWallet",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/nerdy-coder-clones",
+  "MARKETPLACE_LINK": "https://",
   "SHOW_BACKGROUND": true,
   "WS_PROVIDER": "wss://rpc.shiden.astar.network"
 }
