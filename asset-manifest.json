@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/hashlips-ui-for-ink/static/css/main.77e756b7.css",
-    "main.js": "/hashlips-ui-for-ink/static/js/main.b29ef6d2.js",
+    "main.js": "/hashlips-ui-for-ink/static/js/main.29b1960b.js",
     "static/js/787.d77ef5fe.chunk.js": "/hashlips-ui-for-ink/static/js/787.d77ef5fe.chunk.js",
     "static/media/font.woff": "/hashlips-ui-for-ink/static/media/font.617a0a92a82b56f60bbd.woff",
     "index.html": "/hashlips-ui-for-ink/index.html",
     "main.77e756b7.css.map": "/hashlips-ui-for-ink/static/css/main.77e756b7.css.map",
-    "main.b29ef6d2.js.map": "/hashlips-ui-for-ink/static/js/main.b29ef6d2.js.map",
+    "main.29b1960b.js.map": "/hashlips-ui-for-ink/static/js/main.29b1960b.js.map",
     "787.d77ef5fe.chunk.js.map": "/hashlips-ui-for-ink/static/js/787.d77ef5fe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.77e756b7.css",
-    "static/js/main.b29ef6d2.js"
+    "static/js/main.29b1960b.js"
   ]
 }
