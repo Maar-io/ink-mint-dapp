@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/hashlips-ui-for-ink/static/css/main.77e756b7.css",
-    "main.js": "/hashlips-ui-for-ink/static/js/main.29b1960b.js",
-    "static/js/787.d77ef5fe.chunk.js": "/hashlips-ui-for-ink/static/js/787.d77ef5fe.chunk.js",
-    "static/media/font.woff": "/hashlips-ui-for-ink/static/media/font.617a0a92a82b56f60bbd.woff",
-    "index.html": "/hashlips-ui-for-ink/index.html",
-    "main.77e756b7.css.map": "/hashlips-ui-for-ink/static/css/main.77e756b7.css.map",
-    "main.29b1960b.js.map": "/hashlips-ui-for-ink/static/js/main.29b1960b.js.map",
-    "787.d77ef5fe.chunk.js.map": "/hashlips-ui-for-ink/static/js/787.d77ef5fe.chunk.js.map"
+    "main.css": "/ink-mint-dapp/static/css/main.2e82673a.css",
+    "main.js": "/ink-mint-dapp/static/js/main.08ede677.js",
+    "static/js/787.d77ef5fe.chunk.js": "/ink-mint-dapp/static/js/787.d77ef5fe.chunk.js",
+    "static/media/font.woff": "/ink-mint-dapp/static/media/font.617a0a92a82b56f60bbd.woff",
+    "index.html": "/ink-mint-dapp/index.html",
+    "main.2e82673a.css.map": "/ink-mint-dapp/static/css/main.2e82673a.css.map",
+    "main.08ede677.js.map": "/ink-mint-dapp/static/js/main.08ede677.js.map",
+    "787.d77ef5fe.chunk.js.map": "/ink-mint-dapp/static/js/787.d77ef5fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.77e756b7.css",
-    "static/js/main.29b1960b.js"
+    "static/css/main.2e82673a.css",
+    "static/js/main.08ede677.js"
   ]
 }
