@@ -1,0 +1,19 @@
+{
+  "CONTRACT_ADDRESS": "b8QeEr72aJQKfaXcEDGwB5iwqGuF1b9oysHtj3nwMsdmgHa",
+  "SCAN_LINK": "https://shiden.subscan.io/account/b8QeEr72aJQKfaXcEDGwB5iwqGuF1b9oysHtj3nwMsdmgHa",
+  "NETWORK": {
+    "NAME": "Shiden",
+    "SYMBOL": "SDN",
+    "ID": 137
+  },
+  "NFT_NAME": "ShidenGraffiti",
+  "SYMBOL": "SHG",
+  "MAX_SUPPLY": 1000,
+  "WEI_COST": "10000000000000000",
+  "DISPLAY_COST": 1,
+  "GAS_LIMIT": 285000,
+  "MARKETPLACE": "SubWallet",
+  "MARKETPLACE_LINK": "https://",
+  "SHOW_BACKGROUND": true,
+  "WS_PROVIDER": "wss://rpc.shiden.astar.network"
+}
