@@ -8,7 +8,7 @@
   },
   "NFT_NAME": "ShidenGraffiti",
   "SYMBOL": "SHG",
-  "MAX_SUPPLY": 1000,
+  "MAX_SUPPLY": 100,
   "WEI_COST": "10000000000000000",
   "DISPLAY_COST": 1,
   "GAS_LIMIT": 285000,

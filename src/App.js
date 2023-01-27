@@ -215,7 +215,7 @@ function App() {
   };
 
   const getConfig = async () => {
-    const configResponse = await fetch("/config/config.json", {
+    const configResponse = await fetch("/ink-mint-dapp/config/config.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -239,13 +239,13 @@ function App() {
         flex={1}
         ai={"center"}
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
+        image={CONFIG.SHOW_BACKGROUND ? "/ink-mint-dapp/config/images/bg.png" : null}
       >
-        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
+        <StyledLogo alt={"logo"} src={"/ink-mint-dapp/config/images/logo.png"} />
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           {/* <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
+            <StyledImg alt={"example"} src={"/ink-mint-dapp/config/images/example.gif"} />
           </s.Container> */}
           <s.SpacerLarge />
           <s.Container
@@ -413,7 +413,7 @@ function App() {
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
               alt={"example"}
-              src={"/config/images/example.png"}
+              src={"/ink-mint-dapp/config/images/example.png"}
               // style={{ transform: "scaleX(-1)" }}
             />
           </s.Container>

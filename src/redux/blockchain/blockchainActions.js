@@ -53,7 +53,7 @@ export const connect = () => {
     //   },
     // });
 
-    const configResponse = await fetch("/config/config.json", {
+    const configResponse = await fetch("/ink-mint-dapp/config/config.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
