@@ -1,16 +1,12 @@
 # Minting UI for Wasm smart contract on Astar/Shiden
 
-### This site is based on the great work of Hashlips. To build it from scratch please go to [Hashlips YouTube channel](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA).
+> This site is based on the great work of Hashlips. To build it from scratch please go to [Hashlips YouTube channel](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA).
 The site is adapted to communicate with Wasm contract on Shiden Network.
 
 # HashLips NFT minting dapp 🔥
 
+This repo provides a nice and easy way for linking an existing Wasm NFT smart contract to this minting dapp.
 
-This repo provides a nice and easy way for linking an existing NFT smart contract to this minting dapp. There are two ways of using this repo, you can go the simple route or the more complex one.
-
-The simple route is so simple, all you need to do is download the build folder on the release page and change the configuration to fit your needs. (Follow the video for a walk through).
-
-The more complex route allows you to add additional functionality if you are comfortable with coding in react.js. (Follow the below instructions for a walk through).
 
 ## Installation 🛠️
 
@@ -41,7 +37,7 @@ Note: this dapp is designed to work with this [PSP34 NFT smart contract](https:/
 
 ## Configuration :factory:
 To link up your existing smart contract, go to the `public/config/config.json` file and update the following fields to fit your smart contract, network and marketplace details. The cost field should be in wei.
-Ignore (but keepp in config) all the rest of config parameters
+There are a couple of other parameters in this file (left from EVM config), please ignore them but keep in config file.
 
 ```json
 {
@@ -55,23 +51,23 @@ Ignore (but keepp in config) all the rest of config parameters
   "NFT_NAME": "ShidenGraffiti",
   "SYMBOL": "SHG",
   "MAX_SUPPLY": 100,
-  "WEI_COST": "10000000000000000",
+  "WEI_COST": "1000000000000000000",
   "DISPLAY_COST": 1,
   "MARKETPLACE": "SubWallet",
   "MARKETPLACE_LINK": "https://",
   "WS_PROVIDER": "wss://rpc.shiden.astar.network"
 }
 ```
-#### Update Metadata
-Make sure you copy the contract metadata from and paste it in the `src/redux/blockchain/abi.json` file.
+## Update Metadata
+Make sure you copy your contract metadata.json from and paste it as `src/redux/blockchain/abi.json` file.
 
-#### Update Images
+## Update Images
 Now you will need to create and change 2 images and a gif in the `public/config/images` folder, 
 * `bg.png`
 * `example.gif`
-* `logo.png`.
+* `logo.png`
 
-#### Update Theme
+## Update Theme
 Next change the theme colors to your liking in the `public/config/theme.css` file.
 
 ```css
@@ -85,10 +81,11 @@ Next change the theme colors to your liking in the `public/config/theme.css` fil
 }
 ```
 
-#### Favicon
+## Favicon
 Now you will need to create and change the `public/favicon.ico`, `public/logo192.png`, and
 `public/logo512.png` to your brand images.
 
+## Other
 Remember to update the title and description the `public/index.html` file
 
 ```html
