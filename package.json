@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "HashLips minting dapp is a quick and easy way to connect your smart contract and start minting NFTs. Original is reworked to support Wasm smart contract on Astar/Shiden Network",
   "private": true,
-  "homepage": "https://github.com/Maar-io.github.io/hashlips-ui-for-ink",
+  "homepage": "https://maar-io.github.io/ink-mint-dapp",
   "dependencies": {
     "@polkadot/api": "^9.5.1",
     "@polkadot/api-contract": "^9.5.1",
