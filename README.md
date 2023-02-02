@@ -107,6 +107,12 @@ After all the changes you can run.
 ```sh
 yarn start
 ```
+## Video recording (smart contract plus UI)
+Watch this video to learn:
+- [x] Config ink! Contract
+- [x] Deploy NFT Collection
+- [x] Configure UI
 
+[Youtube](https://www.youtube.com/watch?v=YnmBotet6_M)
 
 That's it! you're done.
