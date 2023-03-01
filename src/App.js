@@ -123,74 +123,65 @@ function App() {
   });
 
   const claimNFTs = async () => {
-    let cost = CONFIG.WEI_COST;
-    let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
+    const mintValue = new BN(CONFIG.WEI_COST)
+    // let totalCostWei = String(cost * mintAmount);
+    // let totalGasLimit = String(gasLimit * mintAmount);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
 
     if (blockchain.smartContract !== undefined) {
-      // const { gasRequired } = await blockchain.smartContract.query['payableMint::mintNext'](
-      //   blockchain.account.address,
-      //   {
-      //     gasLimit: blockchain.api.registry.createType('WeightV2', {
-      //       refTime,
-      //       proofSize,
-      //     }),
-      //     storageDepositLimit,
-      //   }
-      // )
-      // console.log("mint gasRequired", gasRequired.toString())
+      console.log("gas limit max", getGasMaxLimit().toHuman())
+      const { gasRequired, storageDeposit, result: qResult } = await blockchain.smartContract.query['payableMint::mintNext'](
+        blockchain.account.address,
+        {
+          gasLimit: getGasMaxLimit(),
+          storageDepositLimit: null,
+          value: mintValue,
+        }
+      )
+      console.log("mintNext query result", qResult.toString())
+      console.log("mint gasRequired", gasRequired.toString())
+      console.log("storageDeposit", storageDeposit.toString())
 
-
-      const proofSize = 3407872
-      const refTime = 32490000000
-      const storageDepositLimit = null
-      // const { gasConsumed, result, output } = await blockchain.smartContract.tx['payableMint::mintNext'](
-      console.log("account used", blockchain)
-      const mintValue = new BN(CONFIG.WEI_COST)
-      let gasRequired = await blockchain?.api.consts.system.blockWeights['maxBlock']
-      console.log("mint gasRequired", gasRequired)
-
-      const res = await blockchain.smartContract.tx['payableMint::mintNext'](
-        // userAddress,
-        // userAddress,
-        // 1,
+      const { gasConsumed, result: txResult } = await blockchain.smartContract.tx['payableMint::mintNext'](
         {
           value: mintValue,
           gasLimit: blockchain.api.registry.createType('WeightV2',
-            // gasRequired
-            {
-              refTime,
-              proofSize,
-            }
+            gasRequired
           ),
-          storageDepositLimit,
+          storageDepositLimit: null,
         }
       ).
         signAndSend(blockchain.account.address, { signer: blockchain.signer }, (result) => {
           console.log('signAndSend status:', result.status.toString());
           if (result.status.isInBlock) {
             setClaimingNft(false);
-            if(result.dispatchError !== undefined){
-            console.log('signAndSend dispatchError:', result.dispatchError);
-            console.log('signAndSend dispatchInfo:', result.dispatchInfo);
-            setFeedback(
-              'failed to mint error: ' + result.dispatchError
+            if (result.dispatchError !== undefined) {
+              console.log('signAndSend dispatchError:', result.dispatchError);
+              console.log('signAndSend dispatchInfo:', result.dispatchInfo);
+              setFeedback(
+                'failed to mint error: ' + result.dispatchError
               );
             } else {
 
               dispatch(fetchData(blockchain.account));
               setFeedback(
                 `WOW, the ${CONFIG.NFT_NAME} is yours! Go open SubWallet to view it.`
-                );
-                console.log('signAndSend result:', result.toHuman());
-              }
+              );
+              console.log('signAndSend result:', result.toHuman());
+              console.log('signAndSend gasConsumed:', result.dispatchInfo.weight.toHuman());
+            }
           }
         });
     };
   }
+
+  const getGasMaxLimit = () => {
+    return blockchain?.api.registry.createType(
+      'WeightV2',
+      blockchain?.api.consts.system.blockWeights['maxBlock']
+    )
+  };
 
   const decrementMintAmount = () => {
     let newMintAmount = mintAmount - 1;

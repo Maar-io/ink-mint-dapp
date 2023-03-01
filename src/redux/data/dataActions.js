@@ -27,7 +27,6 @@ export const fetchData = () => {
       let blockchain = store.getState().blockchain
       let userAddress = blockchain?.account.address;
       let gasRequired = await blockchain?.api.consts.system.blockWeights['maxBlock']
-      console.log("blockWeights['maxBlock']", gasRequired.toString())
       if (blockchain.smartContract !== undefined) {
         // query total supply
         const { output } = await blockchain.smartContract.query['psp34::totalSupply'](userAddress,
