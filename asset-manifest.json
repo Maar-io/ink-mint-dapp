@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ink-mint-dapp/static/css/main.2e82673a.css",
-    "main.js": "/ink-mint-dapp/static/js/main.d0207c21.js",
+    "main.js": "/ink-mint-dapp/static/js/main.d104aa57.js",
     "static/js/787.d77ef5fe.chunk.js": "/ink-mint-dapp/static/js/787.d77ef5fe.chunk.js",
     "static/media/font.woff": "/ink-mint-dapp/static/media/font.617a0a92a82b56f60bbd.woff",
     "index.html": "/ink-mint-dapp/index.html",
     "main.2e82673a.css.map": "/ink-mint-dapp/static/css/main.2e82673a.css.map",
-    "main.d0207c21.js.map": "/ink-mint-dapp/static/js/main.d0207c21.js.map",
+    "main.d104aa57.js.map": "/ink-mint-dapp/static/js/main.d104aa57.js.map",
     "787.d77ef5fe.chunk.js.map": "/ink-mint-dapp/static/js/787.d77ef5fe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2e82673a.css",
-    "static/js/main.d0207c21.js"
+    "static/js/main.d104aa57.js"
   ]
 }
