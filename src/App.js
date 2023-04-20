@@ -123,70 +123,58 @@ function App() {
   });
 
   const claimNFTs = async () => {
-    let cost = CONFIG.WEI_COST;
-    let gasLimit = CONFIG.GAS_LIMIT;
-    let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
+    const mintValue = new BN(CONFIG.WEI_COST)
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
 
     if (blockchain.smartContract !== undefined) {
-      // const { gasRequired } = await blockchain.smartContract.query['payableMint::mintNext'](
-      //   blockchain.account.address,
-      //   {
-      //     gasLimit: blockchain.api.registry.createType('WeightV2', {
-      //       refTime,
-      //       proofSize,
-      //     }),
-      //     storageDepositLimit,
-      //   }
-      // )
-      // console.log("mint gasRequired", gasRequired.toString())
+      // dry run to fetch gas required
+      const gasLimit = blockchain?.api.registry.createType(
+        'WeightV2',
+        blockchain.api.consts.system.blockWeights['maxBlock']
+      )
+      const { gasRequired, storageDeposit, result } = await blockchain.smartContract.query['payableMint::mintNext'](
+        blockchain.account.address,
+        {
+          value: mintValue,
+          gasLimit: gasLimit,
+          storageDepositLimit: null,
+        }
 
-
-      const proofSize = 3407872
-      const refTime = 32490000000
-      const storageDepositLimit = null
-      // const { gasConsumed, result, output } = await blockchain.smartContract.tx['payableMint::mintNext'](
+      )
+      console.log("mint gasRequired", gasRequired.toString())
+      console.log("mint storageDeposit", storageDeposit.toString())
+      console.log("mint result", result.toString())
       console.log("account used", blockchain)
-      const mintValue = new BN(CONFIG.WEI_COST)
-      let gasRequired = await blockchain?.api.consts.system.blockWeights['maxBlock']
-      console.log("mint gasRequired", gasRequired)
 
+      // call mint tx
       const res = await blockchain.smartContract.tx['payableMint::mintNext'](
-        // userAddress,
-        // userAddress,
-        // 1,
         {
           value: mintValue,
           gasLimit: blockchain.api.registry.createType('WeightV2',
-            // gasRequired
-            {
-              refTime,
-              proofSize,
-            }
+            gasRequired
           ),
-          storageDepositLimit,
+          storageDepositLimit: null,
         }
       ).
         signAndSend(blockchain.account.address, { signer: blockchain.signer }, (result) => {
           console.log('signAndSend status:', result.status.toString());
           if (result.status.isInBlock) {
             setClaimingNft(false);
-            if(result.dispatchError !== undefined){
-            console.log('signAndSend dispatchError:', result.dispatchError);
-            console.log('signAndSend dispatchInfo:', result.dispatchInfo);
-            setFeedback(
-              'failed to mint error: ' + result.dispatchError
+            if (result.dispatchError !== undefined) {
+              console.log('signAndSend dispatchError:', result.dispatchError);
+              console.log('signAndSend dispatchInfo:', result.dispatchInfo);
+              setFeedback(
+                'failed to mint error: ' + result.dispatchError
               );
             } else {
 
               dispatch(fetchData(blockchain.account));
               setFeedback(
                 `WOW, the ${CONFIG.NFT_NAME} is yours! Go open SubWallet to view it.`
-                );
-                console.log('signAndSend result:', result.toHuman());
-              }
+              );
+              console.log('signAndSend result:', result.toHuman());
+            }
           }
         });
     };
@@ -414,7 +402,7 @@ function App() {
             <StyledImg
               alt={"example"}
               src={"/ink-mint-dapp/config/images/example.png"}
-              // style={{ transform: "scaleX(-1)" }}
+            // style={{ transform: "scaleX(-1)" }}
             />
           </s.Container>
         </ResponsiveWrapper>
